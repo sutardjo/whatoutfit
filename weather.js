@@ -7,6 +7,7 @@ function getWeather() {
 		APPID: 'd2983c207d7bba0a41970abc13d15005',
 		zip: zipCode,
 	}, function(data) {
+		console.log(data);
 		generateWeatherArray(data);
 	})
 }
@@ -24,4 +25,4 @@ function generateWeatherArray(data) {
 	console.log(weatherTomorrow);
 }
 
-getWeather();
+// getWeather();
