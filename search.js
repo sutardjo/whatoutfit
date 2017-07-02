@@ -1,7 +1,7 @@
 // ---------- Data Modifications --------- //
 
 function search() {
-	var query = 'mens outfit summer';
+	var query = 'jeans mens outfit';
 	var searchURL = "https://www.googleapis.com/customsearch/v1"
 	$.getJSON (searchURL, {
 		key: 'AIzaSyDGxqdIPIRPqXoGiDsXHNleEU2459qO_Lc',
@@ -13,4 +13,4 @@ function search() {
 	})
 }
 
-search();
+// search();
