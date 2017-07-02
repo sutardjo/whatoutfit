@@ -1,3 +1,8 @@
+// ---------- State Declarations  --------- //
+
+// Helps with pagination
+var numPasses = 0;
+
 // ---------- Data Modifications: Searches  --------- //
 
 function getWeather(zipcodeQuery, query) {
@@ -31,7 +36,9 @@ function searchImages(query, temperature) {
 	query = season + ' ' + query;
 	console.log(query);
 	var searchURL = "https://www.googleapis.com/customsearch/v1"
-	$.getJSON (searchURL, {
+	console.log('numPasses: ' + numPasses);
+	if (numPasses === 0) {
+		$.getJSON (searchURL, {
 		key: 'AIzaSyDGxqdIPIRPqXoGiDsXHNleEU2459qO_Lc',
 		cx: '010388424445370661145:wlbdx95zxku',
 		searchType: 'image',
@@ -39,8 +46,20 @@ function searchImages(query, temperature) {
 	}, function(data) {
 		console.log(data)
 		generateOutfitArray(data);
+	})	
+	} else {
+		$.getJSON (searchURL, {
+		key: 'AIzaSyDGxqdIPIRPqXoGiDsXHNleEU2459qO_Lc',
+		cx: '010388424445370661145:wlbdx95zxku',
+		searchType: 'image',
+		q: query,
+		start: numPasses
+	}, function(data) {
+		console.log(data)
+		generateOutfitArray(data);
 	})
-}
+	
+}}
 
 // ---------- Data Generate Objects  --------- //
 
@@ -67,6 +86,23 @@ function generateSearchQuery(gender, clothingQuery, zipcodeQuery,) {
 	getWeather(zipcodeQuery, query);
 }
 
+function generateNextPage() {
+	numPasses = numPasses + 10;
+    var gender = $('input[name=gender]:checked').val(); 
+    var clothingChoice = $('.js-parameters').find('#clothingChoice');
+    var clothingQuery = clothingChoice.val();
+    var zipcode = $('.js-parameters').find('#zip');
+    var zipcodeQuery = zipcode.val();
+    // remove undefined from clothingQuery if not specified
+	if (clothingQuery === undefined) {
+		clothingQuery = ' ';
+	}
+    console.log('2nd' + clothingQuery);	
+    console.log('2nd' + zipcodeQuery);
+    console.log('2nd' + gender);
+    generateSearchQuery(gender, clothingQuery, zipcodeQuery);
+
+}
 
 // ---------- Render Functions  --------- //
 
@@ -79,12 +115,13 @@ function displayWeather(weatherToday) {
 		'<p class="lead">In ' + weatherToday.city + '</p>' +
         '</div>'
 		);
-	$('.js-weather').append(weatherTemplate);
+	$('.js-weather').html(weatherTemplate);
 	console.log('Displaying Weather');
 }
 
 function displayOutfits(outfitResults) {
-  for (var i = 0; i < outfitResults.length; i++) {
+	$('#footer').remove();
+	for (var i = 0; i < outfitResults.length; i++) {
       $('.js-outfits').append(
         '<div class="col-sm-6">' +
             '<a href="' + outfitResults[i] + '">' +
@@ -96,10 +133,29 @@ function displayOutfits(outfitResults) {
         '</div>'
     )
   }
+  renderLoadMoreButton();
 }
 
+function renderLoadMoreButton() {
+	var loadMoreButtonTemplate = (
+			'<br><div class="col-md-12 text-center">' +
+			'<button type="submit" class="btn btn-primary btn-lg load-more-button">See More</button>' +
+			'</div>'
+		)
+	$('.js-outfits').append(loadMoreButtonTemplate)
+	watchLoadMore();
+}
 
 // ---------- Event Listeners --------- //
+
+function watchLoadMore() {
+	$('.load-more-button').click(function(event) {
+		event.preventDefault;
+		console.log("Load More pressed!");
+		$('.load-more-button').remove();
+		generateNextPage();
+	})
+}
 
 function watchSubmit() {
   $('.js-parameters').submit(function(event) {
@@ -112,9 +168,6 @@ function watchSubmit() {
     // gets zip code
     var zipcode = $(event.currentTarget).find('#zip');
     var zipcodeQuery = zipcode.val();
-    // clear out the input
-    clothingChoice.val("");
-    zipcode.val("");
     // remove undefined from clothingQuery if not specified
 	if (clothingQuery === undefined) {
 		clothingQuery = ' ';
@@ -127,6 +180,3 @@ function watchSubmit() {
 }
 
 watchSubmit();
-// searchImages();
-
-// getWeather();

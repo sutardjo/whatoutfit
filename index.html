@@ -1,98 +1,93 @@
-						<!DOCTYPE html>
-						<html lang="en">
-						    <head>
-						        <meta charset="utf-8">
-						        <title>WhatOut.fit - Your Daily Outfit Inspirations</title>
-						        <meta name="viewport" content="width=device-width, initial-scale=1">
-						        <link href="css/init.css" rel="stylesheet" type="text/css">
-						        <link href="css/ion-icons.min.css" rel="stylesheet" type="text/css">
-						        <link href="css/theme.css" rel="stylesheet" type="text/css">  
-						        <link href="css/default.css" rel="stylesheet" type="text/css">
-						        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7CHind:600,500,400,300" rel="stylesheet" type="text/css">
-						        <script type="text/javascript" src="js/app.js" defer></script>
-						        <script
-						  src="https://code.jquery.com/jquery-3.2.1.js"
-						  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-						  crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>WhatOut.fit - Your Daily Outfit Inspirations</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/init.css" rel="stylesheet" type="text/css">
+        <link href="css/ion-icons.min.css" rel="stylesheet" type="text/css">
+        <link href="css/theme.css" rel="stylesheet" type="text/css">  
+        <link href="css/default.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7CHind:600,500,400,300" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/app.js" defer></script>
+    </head>
+    <body data-fade-in="true">
+        <section class="pt140 pb50">
+            <div class="container">
+                <div class="row">    
+                    
+                    <div class="col-md-12 text-center">
+                        <h1><strong>What</strong>Out.fit</h1>
+                        <p class="lead">Outfit inspirations based on daily weather and things in your wardrobe.</p>
+                    </div>
 
-						    </head>
-						    <body data-fade-in="true">
-						        <section class="pt140 pb50">
-						            <div class="container">
-						                <div class="row">    
-						                    
-						                    <div class="col-md-12 text-center">
-						                        <h1><strong>What</strong>Out.fit</h1>
-						                        <p class="lead">Outfit inspirations based on daily weather and things in your wardrobe.</p>
-						                    </div>
+                    <!-- Forms -->
 
-						                    <!-- Forms -->
+                    <form action="#" class="js-parameters">
+                	    <div class="col-md-4 text-center">
+		                    <label>Show me ideas for:</label><br>
+		                    <label class="radio-inline">
+									<input type="radio" name="gender" id="femaleRadio" value="womens">Female
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="gender" id="maleRadio" value="mens">Male
+							</label>
+							<label class="radio-inline">
+							 	<input type="radio" name="gender" id="bothRadio" value="">Both
+							</label>
+						</div>
+						<div class="col-md-4">
+							<label for="clothingChoice">What do you want to wear? (Optional)</label>
+							<input type="text" class="form-control" id="clothingChoice" placeholder="Example: green pants, red sweater, jeans...">
+						</div>
 
-						                    <form action="#" class="js-parameters">
-						                	    <div class="col-md-4 text-center">
-								                    <label>Show me ideas for:</label><br>
-								                    <label class="radio-inline">
-				  										<input type="radio" name="gender" id="femaleRadio" value="womens">Female
-													</label>
-													<label class="radio-inline">
-														<input type="radio" name="gender" id="maleRadio" value="mens">Male
-													</label>
-													<label class="radio-inline">
-													 	<input type="radio" name="gender" id="bothRadio" value="">Both
-													</label>
-												</div>
-												<div class="col-md-4">
-													<label for="clothingChoice">What do you want to wear? (Optional)</label>
-													<input type="text" class="form-control" id="clothingChoice" placeholder="Example: green pants, red sweater, jeans...">
-												</div>
+						<div class="col-md-4">
+							<label for="zip">Zip Code? (Required)</label>
+							<input type="text" id="zip" class="form-control" placeholder="Example: 60611">
+						</div>
 
-												<div class="col-md-4">
-													<label for="zip">Zip Code? (Required)</label>
-													<input type="text" id="zip" class="form-control" placeholder="Example: 60611">
-												</div>
+						<div class="col-md-12 text-center">
+							<button type="submit" class="btn btn-primary btn-lg">Find my outfit!</button>
+						</div>
+					</form>
+                    
+					<!-- Weather Results -->
 
-												<div class="col-md-12 text-center">
-													<button type="submit" class="btn btn-primary btn-lg">Find my outfit!</button>
-												</div>
-											</form>
-						                    
-											<!-- Weather Results -->
+					<div class="js-weather"></div>
+           
+					<!-- Image Results -->
 
-											<div class="js-weather"></div>
-						           
-											<!-- Image Results -->
+                    <div class="col-md-12 vossen-gallery" data-gap="10">
+                        
+                        <div class="vossen-portfolio lightbox">
+                            
+                        <div class="js-outfits"></div> 
+                            
+                    </div>
+                        
+                    </div>
+           
+                </div>
+            </div>
 
-						                    <div class="col-md-12 vossen-gallery" data-gap="10">
-						                        
-						                        <div class="vossen-portfolio lightbox">
-						                            
-						                        <div class="js-outfits"></div> 
-						                            
-					                        </div>
-						                        
-						                    </div>
-						           
-						                </div>
-						            </div>
+        </section>            
+        
+        <!-- Start Footer -->
+        <footer id="footer" class="footer style-1 dark">
 
-						        </section>            
-						        
-						        <!-- Start Footer -->
-						        <footer id="footer" class="footer style-1 dark">
+            <a href="index.html"><img src="img/assets/footer-logo.png" alt="#" class="mr-auto img-responsive"></a>
 
-						            <a href="index.html"><img src="img/assets/footer-logo.png" alt="#" class="mr-auto img-responsive"></a>
-
-						            <p>Made for people with stylish indecision.<br>© WhatOut.fit 2017</p>
-						            
-						            <!-- Back To Top Button -->
-						            <span><a class="scroll-top"><i class="ion-chevron-up"></i></a></span>
-						            
-						        </footer>
-						        <!-- End Footer -->
-						        
-						        <script src="js/jquery.js"></script>
-						        <script src="js/init.js"></script>
-						        <script src="js/scripts.js"></script>       
-						        
-						    </body>
-						</html>
+            <p>Made for people with stylish indecision.<br>© WhatOut.fit 2017</p>
+            
+            <span><a class="scroll-top"><i class="ion-chevron-up"></i></a></span>
+            
+        </footer>
+        
+        <!-- End Footer -->
+        
+        <script src="js/jquery.js"></script>
+        <script src="js/init.js"></script>
+        <script src="js/scripts.js"></script>       
+        
+    </body>
+</html>
