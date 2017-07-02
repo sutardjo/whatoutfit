@@ -10,6 +10,7 @@
         <link href="css/default.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7CHind:600,500,400,300" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="js/app.js" defer></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
     </head>
     <body data-fade-in="true">
         <section class="pt140 pb50">
@@ -23,17 +24,17 @@
 
                     <!-- Forms -->
 
-                    <form action="#" class="js-parameters">
-                	    <div class="col-md-4 text-center">
+                    <form action="#" class="js-parameters" data-toggle="validator">
+                	    <div class="col-md-4 text-center form-group">
 		                    <label>Show me ideas for:</label><br>
 		                    <label class="radio-inline">
-									<input type="radio" name="gender" id="femaleRadio" value="womens">Female
+									<input type="radio" name="gender" id="femaleRadio" value="womens" required>Female
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gender" id="maleRadio" value="mens">Male
+								<input type="radio" name="gender" id="maleRadio" value="mens" required>Male
 							</label>
 							<label class="radio-inline">
-							 	<input type="radio" name="gender" id="bothRadio" value="">Both
+							 	<input type="radio" name="gender" id="bothRadio" value="" required>Both
 							</label>
 						</div>
 						<div class="col-md-4">
@@ -41,12 +42,12 @@
 							<input type="text" class="form-control" id="clothingChoice" placeholder="Example: green pants, red sweater, jeans...">
 						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-4 form-group">
 							<label for="zip">Zip Code? (Required)</label>
-							<input type="text" id="zip" class="form-control" placeholder="Example: 60611">
+							<input type="text" id="zip" class="form-control" placeholder="Example: 60611" required>
 						</div>
 
-						<div class="col-md-12 text-center">
+						<div class="col-md-12 text-center form-group">
 							<button type="submit" class="btn btn-primary btn-lg">Find my outfit!</button>
 						</div>
 					</form>
@@ -82,7 +83,7 @@
             <span><a class="scroll-top"><i class="ion-chevron-up"></i></a></span>
             
         </footer>
-        
+
         <!-- End Footer -->
         
         <script src="js/jquery.js"></script>
