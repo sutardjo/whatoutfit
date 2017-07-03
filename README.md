@@ -1,7 +1,7 @@
 # WhatOut.fit
 
 ## Introduction
-WhatOut.fit is a web app that gives you outfit inspirations based on daily weather and things in your wardrobe.
+WhatOut.fit is a web app that gives you outfit inspirations based on daily weather and things in your wardrobe. Visit [WhatOut.fit](http://whatout.fit) to see the app.
 
 ## Features
 - Retrieves weather for zip code input
