@@ -1,10 +1,13 @@
 // ---------- State Declarations  --------- //
 
-// Helps with pagination
+// Helps with pagination for Google Custom Search.
+// This is incremented by 10 for displaying results on the next page.
+// Starting at 0 indicates the first page of results.
 var numPasses = 0;
 
 // ---------- Data Modifications: Searches  --------- //
 
+// Calls the weather API
 function getWeather(zipcodeQuery, query) {
 	var zipCode = zipcodeQuery;
 	var weatherURL = "http://api.openweathermap.org/data/2.5/forecast/daily"
@@ -13,18 +16,16 @@ function getWeather(zipcodeQuery, query) {
 		APPID: 'd2983c207d7bba0a41970abc13d15005',
 		zip: zipCode,
 	}, function(data) {
-		console.log(data);
 		temperature = data.list[1].temp.day;
-		console.log(temperature);
 		generateWeatherArray(data);
 		searchImages(query, temperature); 
-
 	})
 }
 
+// Calls search API for images
 function searchImages(query, temperature) {
 	var season;
-	// sets season based on temperature
+	// sets season based on temperature. Season keyword is used in query.
 	if (temperature >= 291.483) {
 		season = 'summer';
 	} else if (temperature < 291.483 && season > 280.372) {
@@ -34,9 +35,8 @@ function searchImages(query, temperature) {
 	}
 	// this is the query that gets sent
 	query = season + ' ' + query;
-	console.log(query);
 	var searchURL = "https://www.googleapis.com/customsearch/v1"
-	console.log('numPasses: ' + numPasses);
+	// First page results call
 	if (numPasses === 0) {
 		$.getJSON (searchURL, {
 		key: 'AIzaSyDGxqdIPIRPqXoGiDsXHNleEU2459qO_Lc',
@@ -44,9 +44,9 @@ function searchImages(query, temperature) {
 		searchType: 'image',
 		q: query,
 	}, function(data) {
-		console.log(data)
 		generateOutfitArray(data);
 	})	
+	//subsequent pages results call
 	} else {
 		$.getJSON (searchURL, {
 		key: 'AIzaSyDGxqdIPIRPqXoGiDsXHNleEU2459qO_Lc',
@@ -55,7 +55,6 @@ function searchImages(query, temperature) {
 		q: query,
 		start: numPasses
 	}, function(data) {
-		console.log(data)
 		generateOutfitArray(data);
 	})
 	
@@ -97,9 +96,6 @@ function generateNextPage() {
 	if (clothingQuery === undefined) {
 		clothingQuery = ' ';
 	}
-    console.log('2nd' + clothingQuery);	
-    console.log('2nd' + zipcodeQuery);
-    console.log('2nd' + gender);
     generateSearchQuery(gender, clothingQuery, zipcodeQuery);
 
 }
@@ -116,7 +112,6 @@ function displayWeather(weatherToday) {
         '</div>'
 		);
 	$('.js-weather').html(weatherTemplate);
-	console.log('Displaying Weather');
 }
 
 function displayOutfits(outfitResults) {
@@ -151,7 +146,6 @@ function renderLoadMoreButton() {
 function watchLoadMore() {
 	$('.load-more-button').click(function(event) {
 		event.preventDefault;
-		console.log("Load More pressed!");
 		$('.load-more-button').remove();
 		generateNextPage();
 	})
@@ -172,9 +166,6 @@ function watchSubmit() {
 	if (clothingQuery === undefined) {
 		clothingQuery = ' ';
 	}
-    console.log(clothingQuery);	
-    console.log(zipcodeQuery);
-    console.log(gender);
     generateSearchQuery(gender, clothingQuery, zipcodeQuery);
   });
 }
