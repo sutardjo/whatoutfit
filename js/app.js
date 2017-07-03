@@ -80,7 +80,7 @@ function generateOutfitArray(data) {
 	displayOutfits(outfitResults);
 }
 
-function generateSearchQuery(gender, clothingQuery, zipcodeQuery,) {
+function generateSearchQuery(gender, clothingQuery, zipcodeQuery) {
 	var query = clothingQuery + ' ' + gender + ' outfit fashion'
 	getWeather(zipcodeQuery, query);
 }
